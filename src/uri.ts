@@ -346,12 +346,12 @@ const RDS1 = /^\.\.?\//;
 const RDS2 = /^\/\.(\/|$)/;
 const RDS3 = /^\/\.\.(\/|$)/;
 const RDS4 = /^\.\.?$/;
-const RDS5 = /^\/?(?:.|\n)*?(?=\/|$)/;
+const RDS5 = /^\/?(?:[\s\S])*?(?=\/|$)/;
 
 export function removeDotSegments(input:string):string {
 	const output:Array<string> = [];
-
-	while (input.length) {
+	let count = 0;
+	while (input.length && count++ < 100) {
 		if (input.match(RDS1)) {
 			input = input.replace(RDS1, "");
 		} else if (input.match(RDS2)) {

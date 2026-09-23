@@ -1,6 +1,6 @@
 {
   "name": "uri-js",
-  "version": "5.0.0",
+  "version": "4.5.0",
   "description": "An RFC 3986/3987 compliant, scheme extendable URI/IRI parsing/normalizing/resolving/serializing library for JavaScript.",
   "main": "dist/es5/uri.all.js",
   "types": "dist/es5/uri.all.d.ts",
@@ -19,8 +19,7 @@
     "build:esnext": "tsc",
     "build:es5": "rollup -c && cp dist/esnext/uri.d.ts dist/es5/uri.all.d.ts && npm run build:es5:fix-sourcemap",
     "build:es5:fix-sourcemap": "sorcery -i dist/es5/uri.all.js",
-    "build:es5:min": "uglifyjs dist/es5/uri.all.js --support-ie8 --output dist/es5/uri.all.min.js --in-source-map dist/es5/uri.all.js.map --source-map uri.all.min.js.map --comments --compress --mangle --pure-funcs merge subexp && mv uri.all.min.js.map dist/es5/ && cp dist/es5/uri.all.d.ts dist/es5/uri.all.min.d.ts",
-    "build": "npm run build:esnext && npm run build:es5 && npm run build:es5:min",
+    "build": "npm run build:esnext && npm run build:es5",
     "clean": "rm -rf dist",
     "test": "mocha -u mocha-qunit-ui dist/es5/uri.all.js tests/tests.js"
   },

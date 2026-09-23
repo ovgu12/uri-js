@@ -1,7 +1,7 @@
 /**
  * URI.js
  *
- * @fileoverview An RFC 3986 compliant, scheme extendable URI parsing/validating/resolving library for JavaScript.
+ * @fileoverview An RFC 3986 compliant, scheme extendable URI parsing/normalizing/resolving/serializing library for JavaScript.
  * @author <a href="mailto:gary.court@gmail.com">Gary Court</a>
  * @see http://github.com/garycourt/uri-js
  */
@@ -281,10 +281,11 @@ const RDS1 = /^\.\.?\//;
 const RDS2 = /^\/\.(\/|$)/;
 const RDS3 = /^\/\.\.(\/|$)/;
 const RDS4 = /^\.\.?$/;
-const RDS5 = /^\/?(?:.|\n)*?(?=\/|$)/;
+const RDS5 = /^\/?(?:[\s\S])*?(?=\/|$)/;
 export function removeDotSegments(input) {
     const output = [];
-    while (input.length) {
+    let count = 0;
+    while (input.length && count++ < 100) {
         if (input.match(RDS1)) {
             input = input.replace(RDS1, "");
         }
